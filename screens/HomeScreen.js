@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, SafeAreaView, Image } from 'react-native'
+import { View, SafeAreaView, Image } from 'react-native'
 import tw from 'twrnc';
 import NavOptions from '../components/NavOptions';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
@@ -10,10 +10,10 @@ import NavFavorites from '../components/NavFavorites';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
-  const initialDetailLocation = {
-    'lat': 37.78825,
-    'lng': -122.4324
-  };
+  // const initialDetailLocation = {
+  //   'lat': 37.78825,
+  //   'lng': -122.4324
+  // };
 
   return (
     <SafeAreaView style={tw`bg-white h-full`}>
@@ -32,7 +32,9 @@ const HomeScreen = () => {
               fontSize: 18,
             },
           }}
-          onPress={(data, details = initialDetailLocation) => {
+          fetchDetails={true}
+          // onPress={(data, details = initialDetailLocation) => {
+          onPress={(data, details = null) => {
             dispatch(
               setOrigin({
                 location: details.geometry.location,
@@ -41,10 +43,11 @@ const HomeScreen = () => {
             );
             dispatch(setDestination(null))
           }}
+          returnKeyType={'Search'}
           enablePoweredByContainer={false}
           minLength={2}
           query={{
-            key: process.env.GOOGLE_MAPS_APIKEY,
+            key: GOOGLE_MAPS_APIKEY,
             language: 'en',
           }}
           nearbyPlacesAPI="GooglePlacesSearch"
@@ -58,5 +61,3 @@ const HomeScreen = () => {
 }
 
 export default HomeScreen
-
-const styles = StyleSheet.create({})
