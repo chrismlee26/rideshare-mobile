@@ -16,3 +16,5 @@ yarn
 ```
 expo start
 ```
+
+Select `iOs` or `Android` or `scan the QR code` with the "Expo Go" App on your device.
