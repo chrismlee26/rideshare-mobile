@@ -6,6 +6,7 @@ import { GOOGLE_MAPS_APIKEY } from '@env';
 import { setDestination } from '../slices/navSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
+import NavFavorites from '../components/NavFavorites';
 
 const NavigateCard = () => {
   const dispatch = useDispatch();
@@ -32,13 +33,14 @@ const NavigateCard = () => {
           }}
           enablePoweredByContainer={false}
           query={{
-            key: GOOGLE_MAPS_APIKEY,
+            key: process.env.GOOGLE_MAPS_APIKEY,
             language: 'en'
           }}
           nearbyPlacesAPI='GooglePlacesSearch'
           debounce={400}
         />
       </View>
+      <NavFavorites />
     </SafeAreaView>
   )
 }
