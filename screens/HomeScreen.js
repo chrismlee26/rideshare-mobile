@@ -9,6 +9,10 @@ import { setDestination, setOrigin } from '../slices/navSlice';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
+  const initialDetailLocation = {
+    'lat': 37.78825,
+    'lng': -122.4324
+  };
 
   return (
     <SafeAreaView style={tw`bg-white h-full`}>
@@ -27,7 +31,7 @@ const HomeScreen = () => {
               fontSize: 18,
             },
           }}
-          onPress={(data, details = null) => {
+          onPress={(data, details = initialDetailLocation) => {
             dispatch(
               setOrigin({
                 location: details.geometry.location,
@@ -42,9 +46,8 @@ const HomeScreen = () => {
             key: GOOGLE_MAPS_APIKEY,
             language: 'en',
           }}
-          nearbyPlacessAPI="GooglePlacesSearch"
+          nearbyPlacesAPI="GooglePlacesSearch"
           debounce={400}
-
         />
         <NavOptions />
       </View>
